@@ -19,3 +19,5 @@ def next_request():
     data = {'worker': worker, 'pending': share_today.PendingWorkers()}
     app.emit("nextWorker", data)
 
+def create_app():
+    return app
