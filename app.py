@@ -13,8 +13,9 @@ def home():
   pending = share_today.PendingWorkers()
   return render_template("home.html", worker=worker, pending=pending)
 
-@socketio.on('next')
+@app.on('next')
 def next_request():
     worker=share_today.WhoShareToday(jump=True)
     data = {'worker': worker, 'pending': share_today.PendingWorkers()}
-    socketio.emit("nextWorker", data)
+    app.emit("nextWorker", data)
+
