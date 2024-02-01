@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Fiz isso aqui pra lembrar geral porque a memória é foda tá ligado? Bagulho de lembrar vez é o carai</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  </head>
+  <body class="primary --bs-primary-bg-subtle">
+    <nav class="navbar bg-body-tertiary text-center">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">De quem é a vez?</a>
+      </div>
+    </nav>
+
+    <div class="container text-center" style="margin-top: 5%; ">
+      <div class="row justify-content-md-center">
+        <div class="card col-md-auto" style="width: 18rem;">
+          <img id="img" src="{{url_for('static', filename=worker+'.png')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p id="worker" class="card-text">Quem vai compartilhar hoje é o: {{worker}}</p>
+          </div>
+          <button id="next" type="button" class="btn btn-danger">Pular pro próximo</button>
+        </div>
+        <div class="col-4">
+          <h3>Pendentes:</h3>
+          <ol id="pending" class="list-group list-group-numbered overflow-y-auto" style="height: 350px;">
+            {% for item in pending %}
+            <li class="list-group-item">{{item}}</li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        var worker = document.getElementById('worker');
+      var pendings = document.getElementById('pending');
+        var next = document.getElementById('next');
+        var img = document.getElementById('img');
+        socket.on('nextWorker', data => {
+          worker.innerHTML = 'Quem vai compartilhar hoje é o: ' + data["worker"];
+          pendings.innerHTML = '';
+          for(item of data['pending'])
+          {
+            var li = document.createElement('li');
+            li.innerHTML = item;
+            li.classList.add('list-group-item');
+            pendings.appendChild(li);
+          }
+          img.src = "static/"+data['worker']+".png";
+        });
+        
+        next.addEventListener('click', () =>
+          {
+              socket.emit('next');
+          }
+        )
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  </body>
+</html>
