@@ -4,6 +4,7 @@ from share import ShareToday
 
 fl = Flask(__name__)
 app = SocketIO(fl)
+server = app.server
 
 share_today = ShareToday(["Elielson", "Lamin", "Feitosa", "Geison", "Kelvin", "Tenis", "Iury"])
 
@@ -18,6 +19,3 @@ def next_request():
     worker=share_today.WhoShareToday(jump=True)
     data = {'worker': worker, 'pending': share_today.PendingWorkers()}
     app.emit("nextWorker", data)
-
-def create_app():
-    return app
