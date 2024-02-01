@@ -17,4 +17,5 @@ def home():
 def next_request():
     worker=share_today.WhoShareToday(jump=True)
     data = {'worker': worker, 'pending': share_today.PendingWorkers()}
+    print("Recebeu a chamada de NEXT")
     socketio.emit("nextWorker", data)

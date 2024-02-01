@@ -42,6 +42,7 @@
         var next = document.getElementById('next');
         var img = document.getElementById('img');
         socket.on('nextWorker', data => {
+          console.log("Atualizando worker pelo nextWorker");
           worker.innerHTML = 'Quem vai compartilhar hoje é o: ' + data["worker"];
           pendings.innerHTML = '';
           for(item of data['pending'])
