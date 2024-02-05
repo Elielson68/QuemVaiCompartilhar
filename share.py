@@ -3,7 +3,7 @@ from datetime import datetime
 class ShareToday:
 
   def __init__(self, names):
-    self.today = datetime.today().minute
+    self.today = datetime.today().day
     self.names = names
     self.index = 0
     self.pending_workers = []
@@ -12,8 +12,8 @@ class ShareToday:
     self.last_pending_removed = None
 
   def WhoShareToday(self, jump=False):
-    day_changed = self.today != datetime.today().minute
-    self.today = datetime.today().minute
+    day_changed = self.today != datetime.today().day
+    self.today = datetime.today().day
     is_pending_workers = len(self.pending_workers) > 0
 
     if jump:
