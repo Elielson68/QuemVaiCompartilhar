@@ -5,7 +5,8 @@ from share import ShareToday
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-share_today = ShareToday(["Elielson", "Lamin", "Feitosa", "Geison", "Kelvin", "Tenis", "Iury"])
+share_today = ShareToday(["Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
+                          "Campos", "Domingues", "Fagundes", "Elielson", "Lamin"])
 
 @app.route('/')
 def home():
