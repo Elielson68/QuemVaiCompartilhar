@@ -16,7 +16,7 @@ def home():
 
 
 @app.route('/reset')
-def home():
+def reset():
   share_today.Reset()
   return "Index resetado!"
 
