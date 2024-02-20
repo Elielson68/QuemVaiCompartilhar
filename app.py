@@ -14,6 +14,13 @@ def home():
   pending = share_today.PendingWorkers()
   return render_template("home.html", worker=worker, pending=pending)
 
+
+@app.route('/reset')
+def home():
+  share_today.Reset()
+  return "Index resetado!"
+
+
 @socketio.on('next')
 def next_request():
     worker=share_today.WhoShareToday(jump=True)

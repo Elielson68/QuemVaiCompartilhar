@@ -38,3 +38,6 @@ class ShareToday:
 
   def PendingWorkers(self):
     return self.pending_workers
+
+  def Reset(self):
+    self.index = 0
