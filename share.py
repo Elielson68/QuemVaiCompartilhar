@@ -1,5 +1,8 @@
 from datetime import datetime
 
+SATURDAY = 5
+SUNDAY = 6
+
 class ShareToday:
 
   def __init__(self, names):
@@ -12,6 +15,11 @@ class ShareToday:
     self.last_pending_removed = None
 
   def WhoShareToday(self, jump=False):
+
+    if self.WeekDay() in (SATURDAY, SUNDAY):
+      print("É sábado ou domingo, não troca de pessoa hoje!  --- ", self.WeekDay())
+      return
+
     day_changed = self.today != datetime.today().day
     self.today = datetime.today().day
     is_pending_workers = len(self.pending_workers) > 0
@@ -41,3 +49,6 @@ class ShareToday:
 
   def Reset(self):
     self.index = 0
+
+  def WeekDay(self):
+    return datetime.today().weekday()
