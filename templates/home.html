@@ -11,14 +11,18 @@
       </div>
     </nav>
 
-    <div class="container text-center" style="margin-top: 5%; ">
+    <div class="container text-center" style="margin-top: 3%; ">
       <div class="row justify-content-md-center">
+
+        <h3 id="paused-info">{% if paused %}Pausado até amanhã! O mesmo que está aparecendo agora para compartilhar irá aparecer amanhã!{% endif %}</h3>
+
         <div class="card col-md-auto" style="width: 18rem;">
           <img id="img" src="{{url_for('static', filename=worker+'.png')}}" class="card-img-top" alt="...">
           <div class="card-body">
             <p id="worker" class="card-text">Quem vai compartilhar hoje é o: {{worker}}</p>
           </div>
           <button id="next" type="button" class="btn btn-danger">Pular pro próximo</button>
+          <button id="pause" type="button" class="btn btn-warning" style="margin-top: 5px; margin-bottom: 5px;">Pausar</button>
         </div>
         <div class="col-4">
           <h3>Pendentes:</h3>
@@ -40,6 +44,8 @@
         var worker = document.getElementById('worker');
       var pendings = document.getElementById('pending');
         var next = document.getElementById('next');
+        var pause = document.getElementById('pause');
+        var paused_info = document.getElementById('paused-info');
         var img = document.getElementById('img');
         socket.on('nextWorker', data => {
           console.log("Atualizando worker pelo nextWorker");
@@ -58,6 +64,12 @@
         next.addEventListener('click', () =>
           {
               socket.emit('next');
+          }
+         )
+        pause.addEventListener('click', () =>
+          {
+          paused_info.innerHTML = "Pausado até amanhã! O mesmo que está aparecendo agora para compartilhar irá aparecer amanhã!";
+              socket.emit('pause');
           }
         )
     </script>
