@@ -1,18 +1,20 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 from share import ShareToday
+import json
+from data_controller import DataController
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-index = 0
-with open("share_data") as file:
-    index = int(file.read())
-    print("Index salvo: ", index)
 
-share_today = ShareToday(["Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
-                          "Campos", "Domingues", "Fagundes", "Elielson", "Lamin", "Geison", "Ruilan"],
-                         index)
+order_apresentation = ["Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
+                          "Campos", "Domingues", "Fagundes", "Elielson", "Lamin", "Geison", "Ruilan"]
+data_controll = DataController()
+data_controll.LoadData()
+share_today = ShareToday(order_apresentation, data=data_controll.GetData())
+
+
 @app.route('/')
 def home():
     worker = share_today.WhoShareToday()
