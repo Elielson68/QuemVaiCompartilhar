@@ -8,8 +8,8 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 
-order_apresentation = ["Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
-                          "Campos", "Domingues", "Fagundes", "Elielson", "Lamin", "Geison", "Ruilan"]
+order_apresentation = ["Lamin", "Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
+                          "Campos", "Domingues", "Fagundes", "Elielson"]
 data_controll = DataController()
 data_controll.LoadData()
 share_today = ShareToday(order_apresentation, data=data_controll.GetData())
