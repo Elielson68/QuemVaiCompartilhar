@@ -15,8 +15,8 @@ class DataController:
             data = get(DB).json()
             self.__data_loaded = data if data != "" else None
             print("Carregou: ", self.__data_loaded)
-        except:
-            print("Erro ao tentar carregar dados")
+        except Exception as e:
+            print("------------\nErro ao tentar carregar dados:\n", e, "\n------------")
 
     def GetData(self):
         return self.__data_loaded
@@ -29,5 +29,5 @@ class DataController:
         try:
             put(DB, json=data)
             print("Salvou: ", data)
-        except:
-            print("Erro ao tentar salvar dados")
+        except Exception as e:
+            print("------------\nErro ao tentar salvar dados:\n", e, "\n------------")
