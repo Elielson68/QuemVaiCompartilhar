@@ -14,11 +14,13 @@ class ShareToday:
         self.pending_workers = []
         self.use_pending_worker = False
         self.worker = self.names[self.index]
-        self.last_pending_removed = None
+        self.last_pending_removed = ""
         self.freeze_worker = False
 
         if data is not None:
-            self.__dict__ = data
+            for key in self.__dict__:
+                if key in data:
+                    self.__dict__[key] = data[key]
 
     def WhoShareToday(self, jump=False):
 
