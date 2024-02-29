@@ -11,8 +11,9 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 
-order_apresentation = ["Lamin", "Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
-                          "Campos", "Domingues", "Fagundes", "Elielson"]
+order_apresentation = ["Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
+                          "Campos", "Domingues", "Fagundes", "Elielson", "Lamin"]
+
 data_controll = DataController()
 data_controll.LoadData()
 share_today = ShareToday(order_apresentation, data=data_controll.GetData())
