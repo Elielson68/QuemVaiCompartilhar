@@ -1,6 +1,8 @@
 import json
 from requests import get, put
+import gevent.monkey
 
+gevent.monkey.patch_all()
 
 DB = "https://quemvaicompartilharbd-default-rtdb.firebaseio.com/production.json"
 
