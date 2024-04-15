@@ -1,7 +1,7 @@
 from requests import get, put
 
 
-DB = "https://quemvaicompartilharbd-default-rtdb.firebaseio.com/production.json"
+DB = "https://quemvaicompartilharbd-default-rtdb.firebaseio.com/dev.json"
 
 
 class DataController:
