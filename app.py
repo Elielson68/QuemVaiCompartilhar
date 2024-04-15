@@ -6,10 +6,11 @@ from flask_socketio import SocketIO
 from share import ShareToday
 import json
 from data_controller import DataController
+from api.quemvaiapi import bp as api_bp
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-
+app.socketio = socketio
 
 order_apresentation = ["Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
                           "Campos", "Domingues", "Fagundes", "Elielson", "Lamin"]
@@ -17,7 +18,8 @@ order_apresentation = ["Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "
 data_controll = DataController()
 data_controll.LoadData()
 share_today = ShareToday(order_apresentation, data=data_controll.GetData())
-
+app.share_today = share_today
+app.register_blueprint(api_bp)
 
 @app.route('/')
 def home():
