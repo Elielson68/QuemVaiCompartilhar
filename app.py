@@ -36,7 +36,7 @@ def reset():
 
 
 @app.route('/load')
-def reset():
+def load():
     data_controll.LoadData()
     share_today.LoadData(data_controll.GetData())
     return "Dados carregados!"
