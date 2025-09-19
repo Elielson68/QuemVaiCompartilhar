@@ -31,7 +31,15 @@ def home():
 @app.route('/reset')
 def reset():
     share_today.Reset()
+    share_today.SaveData()
     return "Index resetado!"
+
+
+@app.route('/load')
+def reset():
+    data_controll.LoadData()
+    share_today.LoadData(data_controll.GetData())
+    return "Dados carregados!"
 
 
 @socketio.on('next')

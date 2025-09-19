@@ -67,6 +67,7 @@ class ShareToday:
 
     def Reset(self):
         self.index = 0
+        self.pending_workers = []
 
     def WeekDay(self):
         return datetime.today().weekday()
@@ -79,6 +80,12 @@ class ShareToday:
 
     def IsPaused(self):
         return self.freeze_worker
+
+    def LoadData(self, data):
+        if data is not None:
+            for key in self.__dict__:
+                if key in data:
+                    self.__dict__[key] = data[key]
 
     def SaveData(self):
         DataController.SaveData(self.__dict__)
