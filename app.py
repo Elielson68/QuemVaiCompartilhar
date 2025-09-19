@@ -12,8 +12,7 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 app.socketio = socketio
 
-order_apresentation = ["Geison", "Ruilan", "Kelvin", "Tenis", "Jhone", "Iury", "Feitosa",
-                          "Campos", "Domingues", "Fagundes", "Elielson", "Lamin"]
+order_apresentation = ["Elielson", "Lamin", "Iury", "João", "Kelvin", "Tenis"]
 
 data_controll = DataController()
 data_controll.LoadData()
