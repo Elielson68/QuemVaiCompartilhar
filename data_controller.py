@@ -17,6 +17,9 @@ class DataController:
         except Exception as e:
             print("------------\nErro ao tentar carregar dados:\n", e, "\n------------")
 
+    def GetNames(self):
+        return self.__data_loaded["names"]
+
     def GetData(self):
         return self.__data_loaded
 

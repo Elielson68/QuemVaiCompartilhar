@@ -12,11 +12,11 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 app.socketio = socketio
 
-order_apresentation = ["Elielson", "Lamin", "Iury", "João", "Kelvin", "Tenis"]
-
 data_controll = DataController()
 data_controll.LoadData()
-share_today = ShareToday(order_apresentation, data=data_controll.GetData())
+names = data_controll.GetNames()
+print("nomes:", names)
+share_today = ShareToday(names, data=data_controll.GetData())
 app.share_today = share_today
 app.register_blueprint(api_bp)
 
